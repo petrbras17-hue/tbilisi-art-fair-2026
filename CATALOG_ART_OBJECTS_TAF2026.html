@@ -45,19 +45,19 @@
         .full { padding: 0; }
         .full img {
             width: 100%; flex: 1; object-fit: contain;
-            padding: 6mm 6mm 0 6mm;
+            padding: 2mm 0 0 0;
         }
-        .full .cap { margin: 0 6mm 5mm; }
+        .full .cap { margin: 0 4mm 3mm; }
 
         /* Stacked: two images vertically, each spanning full width */
-        .stacked { padding: 4mm 6mm; gap: 4mm; }
+        .stacked { padding: 2mm 0; gap: 2mm; }
         .stk-item { flex: 1; display: flex; flex-direction: column; min-height: 0; }
         .stk-item img { width: 100%; flex: 1; object-fit: contain; min-height: 0; }
-        .stk-item .cap { border-top: 0.5px solid var(--gray-light); padding: 3px 0 0; }
+        .stk-item .cap { border-top: 0.5px solid var(--gray-light); padding: 3px 4mm 0; }
 
         /* Divider header strip */
         .hdr {
-            padding: 10mm 8mm 6mm; background: #FAFAF8; text-align: center;
+            padding: 8mm 4mm 4mm; background: #FFFFFF; text-align: center;
         }
         .hdr h2 {
             font-family: var(--serif); font-size: 48px;
@@ -71,7 +71,7 @@
 
         /* Bio strip */
         .bio {
-            padding: 6mm 8mm; background: #FAFAF8;
+            padding: 4mm 4mm; background: #FFFFFF;
         }
         .bio h3 { font-family: var(--serif); font-size: 18px; font-weight: 400; margin-bottom: 6px; }
         .bio p { font-size: 9px; line-height: 1.7; color: var(--gray); max-width: 380px; }
@@ -101,15 +101,6 @@
             max-width: 320px;
         }
 
-        /* Back cover */
-        .back {
-            justify-content: center; align-items: center; text-align: center; padding: 30mm;
-        }
-        .back img { max-width: 40%; max-height: 20%; object-fit: contain; margin-bottom: 16px; }
-        .back .back-info {
-            font-family: var(--mono); font-size: 9px;
-            color: var(--gray); letter-spacing: 0.08em; line-height: 2.2;
-        }
 
         @media screen {
             body { background: #E0E0E0; }
@@ -129,7 +120,6 @@
     <img src="ЛОГОТИП/IMG_3159.jpg" alt="Art+OBJECTS">
     <div class="cov-sub">Tbilisi Art Fair 2026</div>
     <div class="cov-date">May 21&ndash;24 &middot; ExpoGeorgia, Tbilisi</div>
-    <div class="cov-concept">Material Memory</div>
 </div>
 
 <!-- 2: DUBINSKY divider + In the Bathroom -->
@@ -139,7 +129,7 @@
         <div class="sub">Oil sticks and oil on canvas &middot; Tbilisi &middot; 2022&ndash;2025</div>
     </div>
     <img src="DUBINSKY/IMG_3146.jpg" alt="In the Bathroom">
-    <div class="cap" style="margin:0 6mm 5mm;">
+    <div class="cap" style="margin:0 4mm 3mm;">
         <span class="cap-t">In the Bathroom</span>
         <span class="cap-d">oil on canvas &middot; 50x50 cm (each) &middot; 2025</span>
     </div>
@@ -206,7 +196,7 @@
 <!-- 6: Dracaena (full page) -->
 <div class="page full">
     <img src="DUBINSKY/IMG_3151.jpg" alt="Dracaena">
-    <div class="cap" style="margin:0 6mm 5mm;">
+    <div class="cap" style="margin:0 4mm 3mm;">
         <span class="cap-t">Dracaena</span>
         <span class="cap-d">oil sticks and acrylic on canvas &middot; 190x155 cm &middot; 2022</span>
     </div>
@@ -220,7 +210,7 @@
         <div class="sub">Tbilisi / New York &middot; Oil on canvas and mixed media &middot; 2022&ndash;2025</div>
     </div>
     <img src="LIZI/IMG_3152.jpg" alt="Find Them (2)">
-    <div class="cap" style="margin:0 6mm 5mm;">
+    <div class="cap" style="margin:0 4mm 3mm;">
         <span class="cap-t">Find Them (2)</span>
         <span class="cap-d">oil on canvas &middot; 110x140 cm &middot; 2022</span>
     </div>
@@ -248,7 +238,7 @@
         </div>
     </div>
     <img src="LIZI/IMG_3154.jpg" alt="Firefly (3)">
-    <div class="cap" style="margin:0 6mm 5mm;">
+    <div class="cap" style="margin:0 4mm 3mm;">
         <span class="cap-t">Firefly (3)</span>
         <span class="cap-d">oil on canvas &middot; 100x130 cm &middot; 2023</span>
     </div>
@@ -277,7 +267,7 @@
 <!-- 10: Lizi — Balcony. May (full page, small intimate work) -->
 <div class="page full">
     <img src="LIZI/IMG_3156.jpg" alt="Balcony. May">
-    <div class="cap" style="margin:0 6mm 5mm;">
+    <div class="cap" style="margin:0 4mm 3mm;">
         <span class="cap-t">Balcony. May</span>
         <span class="cap-d">oil on canvas &middot; 15x25 cm &middot; 2025 &middot; New York</span>
     </div>
@@ -291,7 +281,7 @@
         <div class="sub">Ceramics and works on paper &middot; Tbilisi</div>
     </div>
     <img src="KROTOVA/IMG_3161.jpg" alt="Ceramic Faces">
-    <div class="cap" style="margin:0 6mm 5mm;">
+    <div class="cap" style="margin:0 4mm 3mm;">
         <span class="cap-t">Ceramic Faces</span>
         <span class="cap-d">ceramic sculpture &middot; wall installation</span>
     </div>
@@ -323,7 +313,7 @@
         <h2>SKNYPL</h2>
         <div class="sub">Modular sculpture / furniture &middot; 200-year-old Georgian pine &middot; Tbilisi</div>
     </div>
-    <div style="flex:1; display:flex; flex-direction:column; gap:3mm; padding:3mm 6mm 0;">
+    <div style="flex:1; display:flex; flex-direction:column; gap:2mm; padding:2mm 0 0;">
         <div style="flex:1; display:flex; flex-direction:column; min-height:0;">
             <img src="SKNYPL/IMG_3167.jpg" alt="Living Sculpture Set" style="width:100%; flex:1; object-fit:contain; min-height:0;">
             <div class="cap" style="margin:0; padding:3px 0 0;">
@@ -343,17 +333,6 @@
     <span class="pn">13</span>
 </div>
 
-<!-- 14: BACK COVER — real logo -->
-<div class="page back">
-    <img src="ЛОГОТИП/IMG_3159.jpg" alt="Art+OBJECTS">
-    <div class="back-info">
-        Tbilisi Art Fair 2026 &middot; May 21&ndash;24<br>
-        ExpoGeorgia, Tbilisi, Georgia<br><br>
-        info@artobjects.gallery<br><br>
-        Dubinsky &middot; Lizi Budagashvili<br>
-        Daria Krotova &middot; SKNYPL
-    </div>
-</div>
 
 </body>
 </html>
