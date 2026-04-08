@@ -22,159 +22,98 @@
 
         .page {
             width: 210mm; height: 297mm; margin: 0 auto;
-            padding: 10mm; page-break-after: always; break-after: page;
+            page-break-after: always; break-after: page;
             position: relative; display: flex; flex-direction: column;
             overflow: hidden;
         }
         .page:last-child { page-break-after: avoid; break-after: avoid; }
-        .page-num {
-            position: absolute; bottom: 6mm; right: 10mm;
-            font-family: var(--mono); font-size: 8px; color: var(--gray-light);
+        .pn {
+            position: absolute; bottom: 5mm; right: 8mm;
+            font-family: var(--mono); font-size: 7px; color: var(--gray-light);
         }
 
-        /* ── Logo (exact replica of original) ── */
-        .logo-shape {
-            position: relative; display: inline-block;
-            width: 280px; height: 140px;
+        /* Caption bar */
+        .cap {
+            padding: 5px 8mm 4px; display: flex; justify-content: space-between;
+            align-items: baseline; flex-wrap: wrap; gap: 4px;
+            border-top: 0.5px solid var(--gray-light);
         }
-        .logo-shape .bg {
-            position: absolute; inset: 0;
-            background: var(--pink);
-            clip-path: polygon(
-                0% 20%, 8% 20%, 8% 8%, 18% 8%, 18% 0%,
-                82% 0%, 82% 8%, 92% 8%, 92% 20%, 100% 20%,
-                100% 80%, 92% 80%, 92% 92%, 82% 92%, 82% 100%,
-                18% 100%, 18% 92%, 8% 92%, 8% 80%, 0% 80%
-            );
-        }
-        .logo-shape .text {
-            position: relative; z-index: 1;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: flex-start;
-            height: 100%; padding-left: 30px;
-            font-family: var(--serif); color: var(--black);
-            line-height: 1;
-        }
-        .logo-shape .text .line1 { font-size: 52px; font-weight: 400; }
-        .logo-shape .text .line1 .plus { font-size: 38px; vertical-align: super; margin-left: -2px; }
-        .logo-shape .text .line2 { font-size: 52px; font-weight: 500; letter-spacing: 0.02em; }
+        .cap-t { font-family: var(--serif); font-size: 12px; font-style: italic; }
+        .cap-d { font-family: var(--mono); font-size: 7.5px; color: var(--gray); letter-spacing: 0.03em; }
 
-        /* Small logo */
-        .logo-sm { width: 120px; height: 60px; }
-        .logo-sm .text { padding-left: 12px; }
-        .logo-sm .text .line1 { font-size: 22px; }
-        .logo-sm .text .line1 .plus { font-size: 16px; }
-        .logo-sm .text .line2 { font-size: 22px; }
+        /* Full-bleed art: image fills page edge-to-edge, caption at bottom */
+        .full { padding: 0; }
+        .full img {
+            width: 100%; flex: 1; object-fit: contain;
+            padding: 6mm 6mm 0 6mm;
+        }
+        .full .cap { margin: 0 6mm 5mm; }
 
-        /* ── Cover ── */
-        .cover { justify-content: center; align-items: center; text-align: center; }
-        .cover-sub {
-            font-family: var(--mono); font-size: 11px;
-            letter-spacing: 0.3em; text-transform: uppercase;
-            color: var(--gray); margin-top: 24px;
-        }
-        .cover-date {
-            font-family: var(--serif); font-size: 16px;
-            font-weight: 300; color: var(--gray); margin-top: 60px;
-        }
+        /* Stacked: two images vertically, each spanning full width */
+        .stacked { padding: 4mm 6mm; gap: 4mm; }
+        .stk-item { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+        .stk-item img { width: 100%; flex: 1; object-fit: contain; min-height: 0; }
+        .stk-item .cap { border-top: 0.5px solid var(--gray-light); padding: 3px 0 0; }
 
-        /* ── Artwork full-bleed page ── */
-        .art-page { padding: 6mm; }
-        .art-page .img-wrap {
-            flex: 1; display: flex; justify-content: center; align-items: center;
-            overflow: hidden;
+        /* Divider header strip */
+        .hdr {
+            padding: 10mm 8mm 6mm; background: #FAFAF8; text-align: center;
         }
-        .art-page img {
-            max-width: 100%; max-height: calc(297mm - 32mm);
-            object-fit: contain;
-        }
-        .art-page .caption {
-            display: flex; justify-content: space-between; align-items: baseline;
-            padding: 6px 0 0; flex-wrap: wrap; gap: 4px;
-            border-top: 0.5px solid var(--gray-light); margin-top: 4px;
-        }
-        .caption-title {
-            font-family: var(--serif); font-size: 13px;
-            font-style: italic; font-weight: 400;
-        }
-        .caption-detail {
-            font-family: var(--mono); font-size: 8px;
-            color: var(--gray); letter-spacing: 0.04em;
-        }
-
-        /* ── Two-up ── */
-        .two-up { padding: 6mm; }
-        .two-grid {
-            flex: 1; display: grid; grid-template-columns: 1fr 1fr;
-            gap: 6mm; align-items: start;
-        }
-        .two-item img { width: 100%; height: auto; display: block; }
-        .two-item .caption { padding-top: 4px; border-top: 0.5px solid var(--gray-light); margin-top: 4px; }
-        .two-item .caption-title { font-family: var(--serif); font-size: 11px; font-style: italic; }
-        .two-item .caption-detail { font-family: var(--mono); font-size: 7px; color: var(--gray); }
-
-        /* ── Three-up ── */
-        .three-grid {
-            flex: 1; display: grid; grid-template-columns: 1fr 1fr 1fr;
-            gap: 5mm; align-items: center;
-        }
-
-        /* ── Artist divider (compact) ── */
-        .divider { justify-content: center; align-items: center; text-align: center; background: #FAFAF8; }
-        .divider h2 {
-            font-family: var(--serif); font-size: 54px;
+        .hdr h2 {
+            font-family: var(--serif); font-size: 48px;
             font-weight: 300; letter-spacing: -0.02em; line-height: 1.1;
         }
-        .divider .sub {
-            font-family: var(--mono); font-size: 10px;
-            letter-spacing: 0.2em; text-transform: uppercase;
-            color: var(--gray); margin-top: 10px;
-        }
-        .divider .underscore { color: var(--pink); }
-
-        /* ── Bio block (inline, not full page) ── */
-        .bio-block {
-            padding: 8mm 10mm; background: #FAFAF8;
-            margin-bottom: 4mm;
-        }
-        .bio-block h3 {
-            font-family: var(--serif); font-size: 20px;
-            font-weight: 400; margin-bottom: 10px;
-        }
-        .bio-block p {
-            font-size: 10px; line-height: 1.8; color: var(--gray); max-width: 380px;
-        }
-        .bio-block p + p { margin-top: 8px; }
-        .bio-details {
-            display: flex; gap: 24px; margin-top: 12px;
-        }
-        .bio-det { border-top: 0.5px solid var(--gray-light); padding-top: 6px; }
-        .bio-det-label { font-family: var(--mono); font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); }
-        .bio-det-value { font-size: 10px; margin-top: 2px; }
-
-        /* ── Intro text block ── */
-        .intro-block {
-            padding: 12mm 14mm;
-        }
-        .intro-block h2 {
-            font-family: var(--serif); font-size: 32px;
-            font-weight: 300; line-height: 1.3; margin-bottom: 16px;
-        }
-        .intro-block p {
-            font-size: 11px; line-height: 1.9; color: var(--gray); max-width: 360px;
-        }
-        .intro-block p + p { margin-top: 10px; }
-
-        /* ── Back cover ── */
-        .back { justify-content: flex-end; align-items: center; text-align: center; padding-bottom: 30mm; }
-        .back-info {
+        .hdr .sub {
             font-family: var(--mono); font-size: 9px;
-            color: var(--gray); letter-spacing: 0.08em; line-height: 2.2; margin-top: 12px;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--gray); margin-top: 6px;
+        }
+
+        /* Bio strip */
+        .bio {
+            padding: 6mm 8mm; background: #FAFAF8;
+        }
+        .bio h3 { font-family: var(--serif); font-size: 18px; font-weight: 400; margin-bottom: 6px; }
+        .bio p { font-size: 9px; line-height: 1.7; color: var(--gray); max-width: 380px; }
+        .bio-row { display: flex; gap: 20px; margin-top: 8px; }
+        .bio-col { border-top: 0.5px solid var(--gray-light); padding-top: 4px; }
+        .bio-lbl { font-family: var(--mono); font-size: 6.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); }
+        .bio-val { font-size: 9px; margin-top: 1px; }
+
+        /* Cover */
+        .cover {
+            justify-content: center; align-items: center; text-align: center;
+            padding: 30mm;
+        }
+        .cover img { max-width: 70%; max-height: 40%; object-fit: contain; }
+        .cover .cov-sub {
+            font-family: var(--mono); font-size: 11px;
+            letter-spacing: 0.3em; text-transform: uppercase;
+            color: var(--gray); margin-top: 32px;
+        }
+        .cover .cov-date {
+            font-family: var(--serif); font-size: 15px;
+            font-weight: 300; color: var(--gray); margin-top: 50px;
+        }
+        .cover .cov-concept {
+            font-family: var(--serif); font-size: 20px; font-style: italic;
+            font-weight: 300; color: var(--gray); margin-top: 12px;
+            max-width: 320px;
+        }
+
+        /* Back cover */
+        .back {
+            justify-content: center; align-items: center; text-align: center; padding: 30mm;
+        }
+        .back img { max-width: 40%; max-height: 20%; object-fit: contain; margin-bottom: 16px; }
+        .back .back-info {
+            font-family: var(--mono); font-size: 9px;
+            color: var(--gray); letter-spacing: 0.08em; line-height: 2.2;
         }
 
         @media screen {
             body { background: #E0E0E0; }
-            .page { background: white; margin: 10px auto; box-shadow: 0 2px 30px rgba(0,0,0,0.15); }
+            .page { background: white; margin: 8px auto; box-shadow: 0 2px 24px rgba(0,0,0,0.15); }
         }
         @media print {
             body { background: white; }
@@ -185,276 +124,234 @@
 </head>
 <body>
 
-<!-- P1: COVER -->
+<!-- 1: COVER — real logo from folder -->
 <div class="page cover">
-    <div class="logo-shape">
-        <div class="bg"></div>
-        <div class="text">
-            <span class="line1">Art<span class="plus">+</span></span>
-            <span class="line2">OBJECTS</span>
+    <img src="ЛОГОТИП/IMG_3159.jpg" alt="Art+OBJECTS">
+    <div class="cov-sub">Tbilisi Art Fair 2026</div>
+    <div class="cov-date">May 21&ndash;24 &middot; ExpoGeorgia, Tbilisi</div>
+    <div class="cov-concept">Material Memory</div>
+</div>
+
+<!-- 2: DUBINSKY divider + In the Bathroom -->
+<div class="page full">
+    <div class="hdr">
+        <h2>Dubinsky<span style="color:var(--pink)">_</span></h2>
+        <div class="sub">Oil sticks and oil on canvas &middot; Tbilisi &middot; 2022&ndash;2025</div>
+    </div>
+    <img src="DUBINSKY/IMG_3146.jpg" alt="In the Bathroom">
+    <div class="cap" style="margin:0 6mm 5mm;">
+        <span class="cap-t">In the Bathroom</span>
+        <span class="cap-d">oil on canvas &middot; 50x50 cm (each) &middot; 2025</span>
+    </div>
+    <span class="pn">02</span>
+</div>
+
+<!-- 3: The Lake + Midnight Bar (VERTICAL stack) -->
+<div class="page stacked">
+    <div class="stk-item">
+        <img src="DUBINSKY/IMG_3144.jpg" alt="The Lake">
+        <div class="cap">
+            <span class="cap-t">The Lake</span>
+            <span class="cap-d">oil on canvas &middot; 80x60 cm &middot; 2025</span>
         </div>
     </div>
-    <div class="cover-sub">Tbilisi Art Fair 2026</div>
-    <div class="cover-date">May 21&ndash;24, 2026 &middot; ExpoGeorgia, Tbilisi</div>
-</div>
-
-<!-- P2: INTRO + FIRST ART -->
-<div class="page" style="padding:0">
-    <div class="intro-block">
-        <h2>Material Memory</h2>
-        <p>Four artists. Four materials. One story of transformation and memory. Oil stick captures narrative. Oil paint holds dreamscapes. Clay preserves gesture. 200-year-old Georgian pine is reborn as sculpture.</p>
-        <p>Art+OBJECTS presents a curated selection at Tbilisi Art Fair 2026 &mdash; where fine art meets the tangible world.</p>
-    </div>
-    <div style="flex:1; display:flex; justify-content:center; align-items:center; padding:0 6mm 6mm;">
-        <img src="ЛОГОТИП/IMG_3159.jpg" alt="Art+OBJECTS Logo" style="max-height:140mm; max-width:100%; object-fit:contain;">
-    </div>
-    <span class="page-num">02</span>
-</div>
-
-<!-- P3: DUBINSKY DIVIDER (compact half-page + art) -->
-<div class="page" style="padding:0">
-    <div style="height:35%; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:#FAFAF8;">
-        <h2 style="font-family:var(--serif); font-size:54px; font-weight:300;">Dubinsky<span style="color:var(--pink)">_</span></h2>
-        <div style="font-family:var(--mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gray); margin-top:8px;">AW 2025 &middot; Tbilisi</div>
-    </div>
-    <div style="flex:1; display:flex; justify-content:center; align-items:center; padding:4mm 6mm 6mm;">
-        <img src="DUBINSKY/IMG_3146.jpg" alt="In the Bathroom" style="max-width:100%; max-height:100%; object-fit:contain;">
-    </div>
-    <div style="padding:0 6mm 4mm; display:flex; justify-content:space-between; border-top:0.5px solid #C8C8C8; margin:0 6mm;">
-        <span class="caption-title">In the Bathroom</span>
-        <span class="caption-detail">oil on canvas &middot; 50x50 cm (each) &middot; 2025</span>
-    </div>
-    <span class="page-num">03</span>
-</div>
-
-<!-- P4: The Lake + Midnight Bar -->
-<div class="page two-up">
-    <div class="two-grid">
-        <div class="two-item">
-            <img src="DUBINSKY/IMG_3144.jpg" alt="The Lake">
-            <div class="caption">
-                <div class="caption-title">The Lake</div>
-                <div class="caption-detail">oil on canvas &middot; 80x60 cm &middot; 2025</div>
-            </div>
-        </div>
-        <div class="two-item">
-            <img src="DUBINSKY/IMG_3145.jpg" alt="Midnight Bar">
-            <div class="caption">
-                <div class="caption-title">Midnight Bar</div>
-                <div class="caption-detail">oil on canvas &middot; 80x60 cm &middot; 2025</div>
-            </div>
+    <div class="stk-item">
+        <img src="DUBINSKY/IMG_3145.jpg" alt="Midnight Bar">
+        <div class="cap">
+            <span class="cap-t">Midnight Bar</span>
+            <span class="cap-d">oil on canvas &middot; 80x60 cm &middot; 2025</span>
         </div>
     </div>
-    <span class="page-num">04</span>
+    <span class="pn">03</span>
 </div>
 
-<!-- P5: Naked With a Hat + Birthday Evening -->
-<div class="page two-up">
-    <div class="two-grid">
-        <div class="two-item">
-            <img src="DUBINSKY/IMG_3147.jpg" alt="Naked With a Hat">
-            <div class="caption">
-                <div class="caption-title">Naked With a Hat</div>
-                <div class="caption-detail">oil on canvas &middot; 60x45 cm &middot; 2025</div>
-            </div>
-        </div>
-        <div class="two-item">
-            <img src="DUBINSKY/IMG_3148.jpg" alt="Birthday Evening">
-            <div class="caption">
-                <div class="caption-title">Birthday Evening</div>
-                <div class="caption-detail">oil on canvas &middot; 40x30 cm &middot; 2025</div>
-            </div>
+<!-- 4: Naked With a Hat + Birthday Evening (VERTICAL) -->
+<div class="page stacked">
+    <div class="stk-item">
+        <img src="DUBINSKY/IMG_3147.jpg" alt="Naked With a Hat">
+        <div class="cap">
+            <span class="cap-t">Naked With a Hat</span>
+            <span class="cap-d">oil on canvas &middot; 60x45 cm &middot; 2025</span>
         </div>
     </div>
-    <span class="page-num">05</span>
-</div>
-
-<!-- P6: Blue Vase + After Dinner -->
-<div class="page two-up">
-    <div class="two-grid">
-        <div class="two-item">
-            <img src="DUBINSKY/IMG_3149.jpg" alt="The Blue Vase">
-            <div class="caption">
-                <div class="caption-title">The Blue Vase</div>
-                <div class="caption-detail">oil sticks on canvas &middot; 100x100 cm &middot; 2023</div>
-            </div>
-        </div>
-        <div class="two-item">
-            <img src="DUBINSKY/IMG_3150.jpg" alt="After Dinner">
-            <div class="caption">
-                <div class="caption-title">After Dinner</div>
-                <div class="caption-detail">oil sticks on canvas &middot; 170x120 cm &middot; 2023</div>
-            </div>
+    <div class="stk-item">
+        <img src="DUBINSKY/IMG_3148.jpg" alt="Birthday Evening">
+        <div class="cap">
+            <span class="cap-t">Birthday Evening</span>
+            <span class="cap-d">oil on canvas &middot; 40x30 cm &middot; 2025</span>
         </div>
     </div>
-    <span class="page-num">06</span>
+    <span class="pn">04</span>
 </div>
 
-<!-- P7: Dracaena (full page) -->
-<div class="page art-page">
-    <div class="img-wrap">
-        <img src="DUBINSKY/IMG_3151.jpg" alt="Dracaena">
+<!-- 5: Blue Vase + After Dinner (VERTICAL) -->
+<div class="page stacked">
+    <div class="stk-item">
+        <img src="DUBINSKY/IMG_3149.jpg" alt="The Blue Vase">
+        <div class="cap">
+            <span class="cap-t">The Blue Vase</span>
+            <span class="cap-d">oil sticks on canvas &middot; 100x100 cm &middot; 2023</span>
+        </div>
     </div>
-    <div class="caption">
-        <span class="caption-title">Dracaena</span>
-        <span class="caption-detail">oil sticks and acrylic on canvas &middot; 190x155 cm &middot; 2022</span>
+    <div class="stk-item">
+        <img src="DUBINSKY/IMG_3150.jpg" alt="After Dinner">
+        <div class="cap">
+            <span class="cap-t">After Dinner</span>
+            <span class="cap-d">oil sticks on canvas &middot; 170x120 cm &middot; 2023</span>
+        </div>
     </div>
-    <span class="page-num">07</span>
+    <span class="pn">05</span>
 </div>
 
-<!-- P8: LIZI divider + Find Them -->
-<div class="page" style="padding:0">
-    <div style="height:30%; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:#FAFAF8;">
-        <h2 style="font-family:var(--serif); font-size:44px; font-weight:300; line-height:1.1;">Lizi<br>Budagashvili</h2>
-        <div style="font-family:var(--mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gray); margin-top:8px;">Tbilisi / New York</div>
+<!-- 6: Dracaena (full page) -->
+<div class="page full">
+    <img src="DUBINSKY/IMG_3151.jpg" alt="Dracaena">
+    <div class="cap" style="margin:0 6mm 5mm;">
+        <span class="cap-t">Dracaena</span>
+        <span class="cap-d">oil sticks and acrylic on canvas &middot; 190x155 cm &middot; 2022</span>
     </div>
-    <div style="flex:1; display:flex; justify-content:center; align-items:center; padding:4mm 6mm 6mm;">
-        <img src="LIZI/IMG_3152.jpg" alt="Find Them (2)" style="max-width:100%; max-height:100%; object-fit:contain;">
-    </div>
-    <div style="padding:0 6mm 4mm; display:flex; justify-content:space-between; border-top:0.5px solid #C8C8C8; margin:0 6mm;">
-        <span class="caption-title">Find Them (2)</span>
-        <span class="caption-detail">oil on canvas &middot; 110x140 cm &middot; 2022</span>
-    </div>
-    <span class="page-num">08</span>
+    <span class="pn">06</span>
 </div>
 
-<!-- P9: Lizi bio (compact) + Firefly -->
-<div class="page" style="padding:0">
-    <div class="bio-block">
+<!-- 7: LIZI divider + Find Them -->
+<div class="page full">
+    <div class="hdr">
+        <h2>Lizi Budagashvili</h2>
+        <div class="sub">Tbilisi / New York &middot; Oil on canvas and mixed media &middot; 2022&ndash;2025</div>
+    </div>
+    <img src="LIZI/IMG_3152.jpg" alt="Find Them (2)">
+    <div class="cap" style="margin:0 6mm 5mm;">
+        <span class="cap-t">Find Them (2)</span>
+        <span class="cap-d">oil on canvas &middot; 110x140 cm &middot; 2022</span>
+    </div>
+    <span class="pn">07</span>
+</div>
+
+<!-- 8: Lizi bio + Firefly -->
+<div class="page full">
+    <div class="bio">
         <h3>Artist Statement</h3>
         <p>Exploring themes of childhood, memories, and nostalgia, my paintings capture the longing for simpler times by delving into the ephemeral, mirage-like recollections. I draw dreamscapes from memory gaps and create ethereal atmospheres through transparent veils.</p>
-        <div class="bio-details">
-            <div class="bio-det">
-                <div class="bio-det-label">Education</div>
-                <div class="bio-det-value">MFA, NY Academy of Art '25<br>BFA, Ringling College '22</div>
+        <div class="bio-row">
+            <div class="bio-col">
+                <div class="bio-lbl">Education</div>
+                <div class="bio-val">MFA, NY Academy of Art '25 &middot; BFA, Ringling College '22</div>
             </div>
-            <div class="bio-det">
-                <div class="bio-det-label">Exhibitions</div>
-                <div class="bio-det-value">Wohleb Gallery, Vienna<br>Vernissage Gallery, Tbilisi</div>
+            <div class="bio-col">
+                <div class="bio-lbl">Exhibitions</div>
+                <div class="bio-val">Wohleb Gallery, Vienna &middot; Vernissage Gallery, Tbilisi</div>
             </div>
-            <div class="bio-det">
-                <div class="bio-det-label">Awards</div>
-                <div class="bio-det-value">Elizabeth Greenshields<br>Foundation Grant (2x)</div>
+            <div class="bio-col">
+                <div class="bio-lbl">Awards</div>
+                <div class="bio-val">Elizabeth Greenshields Foundation Grant (2x)</div>
             </div>
         </div>
     </div>
-    <div style="flex:1; display:flex; justify-content:center; align-items:center; padding:0 6mm 6mm;">
-        <img src="LIZI/IMG_3154.jpg" alt="Firefly (3)" style="max-width:100%; max-height:100%; object-fit:contain;">
+    <img src="LIZI/IMG_3154.jpg" alt="Firefly (3)">
+    <div class="cap" style="margin:0 6mm 5mm;">
+        <span class="cap-t">Firefly (3)</span>
+        <span class="cap-d">oil on canvas &middot; 100x130 cm &middot; 2023</span>
     </div>
-    <div style="padding:0 6mm 4mm; display:flex; justify-content:space-between; border-top:0.5px solid #C8C8C8; margin:0 6mm;">
-        <span class="caption-title">Firefly (3)</span>
-        <span class="caption-detail">oil on canvas &middot; 100x130 cm &middot; 2023</span>
-    </div>
-    <span class="page-num">09</span>
+    <span class="pn">08</span>
 </div>
 
-<!-- P10: Lizi 3 works -->
-<div class="page two-up">
-    <div class="three-grid">
-        <div class="two-item">
-            <img src="LIZI/IMG_3153.jpg" alt="Flowers from the Meadow">
-            <div class="caption">
-                <div class="caption-title">Flowers from the Meadow</div>
-                <div class="caption-detail">oil and graphite on paper &middot; 50x70 cm &middot; 2023</div>
-            </div>
-        </div>
-        <div class="two-item">
-            <img src="LIZI/IMG_3155.jpg" alt="Offerings to Memories">
-            <div class="caption">
-                <div class="caption-title">Offerings to Memories</div>
-                <div class="caption-detail">screenprint, collage and stitching on paper &middot; 56x58 cm &middot; 2022</div>
-            </div>
-        </div>
-        <div class="two-item">
-            <img src="LIZI/IMG_3156.jpg" alt="Balcony. May">
-            <div class="caption">
-                <div class="caption-title">Balcony. May</div>
-                <div class="caption-detail">oil on canvas &middot; 15x25 cm &middot; 2025 &middot; New York</div>
-            </div>
+<!-- 9: Lizi — Flowers + Offerings (VERTICAL) -->
+<div class="page stacked">
+    <div class="stk-item">
+        <img src="LIZI/IMG_3153.jpg" alt="Flowers from the Meadow">
+        <div class="cap">
+            <span class="cap-t">Flowers from the Meadow</span>
+            <span class="cap-d">oil and graphite on paper &middot; 50x70 cm &middot; 2023</span>
         </div>
     </div>
-    <span class="page-num">10</span>
+    <div class="stk-item">
+        <img src="LIZI/IMG_3155.jpg" alt="Offerings to Memories">
+        <div class="cap">
+            <span class="cap-t">Offerings to Memories</span>
+            <span class="cap-d">screenprint, collage and stitching on paper &middot; 56x58 cm &middot; 2022</span>
+        </div>
+    </div>
+    <span class="pn">09</span>
 </div>
 
-<!-- P11: KROTOVA divider + Ceramic Faces -->
-<div class="page" style="padding:0">
-    <div style="height:25%; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:#FAFAF8;">
-        <h2 style="font-family:var(--serif); font-size:44px; font-weight:300; line-height:1.1;">Daria<br>Krotova</h2>
-        <div style="font-family:var(--mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gray); margin-top:8px;">Ceramics &amp; Works on Paper</div>
+<!-- 10: Lizi — Balcony. May (full page, small intimate work) -->
+<div class="page full">
+    <img src="LIZI/IMG_3156.jpg" alt="Balcony. May">
+    <div class="cap" style="margin:0 6mm 5mm;">
+        <span class="cap-t">Balcony. May</span>
+        <span class="cap-d">oil on canvas &middot; 15x25 cm &middot; 2025 &middot; New York</span>
     </div>
-    <div style="flex:1; display:flex; justify-content:center; align-items:center; padding:4mm 6mm 6mm;">
-        <img src="KROTOVA/IMG_3161.jpg" alt="Ceramic Faces" style="max-width:100%; max-height:100%; object-fit:contain;">
-    </div>
-    <div style="padding:0 6mm 4mm; display:flex; justify-content:space-between; border-top:0.5px solid #C8C8C8; margin:0 6mm;">
-        <span class="caption-title">Ceramic Faces</span>
-        <span class="caption-detail">ceramic sculpture &middot; wall installation</span>
-    </div>
-    <span class="page-num">11</span>
+    <span class="pn">10</span>
 </div>
 
-<!-- P12: Krotova Multitude + Constellations -->
-<div class="page two-up">
-    <div class="two-grid">
-        <div class="two-item">
-            <img src="KROTOVA/IMG_3162.jpg" alt="Faces Multitude">
-            <div class="caption">
-                <div class="caption-title">Faces &mdash; Multitude</div>
-                <div class="caption-detail">ceramic sculpture &middot; large-scale installation</div>
-            </div>
-        </div>
-        <div class="two-item">
-            <img src="KROTOVA/IMG_3163.jpg" alt="Constellations">
-            <div class="caption">
-                <div class="caption-title">Constellations (Series)</div>
-                <div class="caption-detail">mixed media on paper &middot; series of 4 works</div>
-            </div>
-        </div>
+<!-- 11: KROTOVA divider + Ceramic Faces -->
+<div class="page full">
+    <div class="hdr">
+        <h2>Daria Krotova</h2>
+        <div class="sub">Ceramics and works on paper &middot; Tbilisi</div>
     </div>
-    <span class="page-num">12</span>
+    <img src="KROTOVA/IMG_3161.jpg" alt="Ceramic Faces">
+    <div class="cap" style="margin:0 6mm 5mm;">
+        <span class="cap-t">Ceramic Faces</span>
+        <span class="cap-d">ceramic sculpture &middot; wall installation</span>
+    </div>
+    <span class="pn">11</span>
 </div>
 
-<!-- P13: SKNYPL divider + both works -->
-<div class="page" style="padding:0">
-    <div style="height:22%; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:#FAFAF8;">
-        <h2 style="font-family:var(--serif); font-size:54px; font-weight:300;">SKNYPL</h2>
-        <div style="font-family:var(--mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gray); margin-top:8px;">Modular Sculpture / Furniture &middot; Tbilisi</div>
-    </div>
-    <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:5mm; padding:4mm 6mm 6mm; align-items:center;">
-        <div>
-            <img src="SKNYPL/IMG_3167.jpg" alt="Living Sculpture Set" style="width:100%; display:block;">
-            <div style="padding-top:4px; border-top:0.5px solid #C8C8C8; margin-top:4px;">
-                <div class="caption-title">Living Sculpture Set</div>
-                <div class="caption-detail">200-year-old Georgian pine &middot; modular</div>
-            </div>
-        </div>
-        <div>
-            <img src="SKNYPL/IMG_3169.jpg" alt="Living Sculpture Set (Detail)" style="width:100%; display:block;">
-            <div style="padding-top:4px; border-top:0.5px solid #C8C8C8; margin-top:4px;">
-                <div class="caption-title">Living Sculpture Set (Detail)</div>
-                <div class="caption-detail">reclaimed pine &middot; cut &amp; reassembled</div>
-            </div>
+<!-- 12: Krotova — Multitude + Constellations (VERTICAL) -->
+<div class="page stacked">
+    <div class="stk-item">
+        <img src="KROTOVA/IMG_3162.jpg" alt="Faces — Multitude">
+        <div class="cap">
+            <span class="cap-t">Faces &mdash; Multitude</span>
+            <span class="cap-d">ceramic sculpture &middot; large-scale installation</span>
         </div>
     </div>
-    <span class="page-num">13</span>
+    <div class="stk-item">
+        <img src="KROTOVA/IMG_3163.jpg" alt="Constellations (Series)">
+        <div class="cap">
+            <span class="cap-t">Constellations (Series)</span>
+            <span class="cap-d">mixed media on paper &middot; series of 4 works</span>
+        </div>
+    </div>
+    <span class="pn">12</span>
 </div>
 
-<!-- P14: BACK COVER -->
+<!-- 13: SKNYPL divider + works (VERTICAL) -->
+<div class="page full">
+    <div class="hdr">
+        <h2>SKNYPL</h2>
+        <div class="sub">Modular sculpture / furniture &middot; 200-year-old Georgian pine &middot; Tbilisi</div>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:3mm; padding:3mm 6mm 0;">
+        <div style="flex:1; display:flex; flex-direction:column; min-height:0;">
+            <img src="SKNYPL/IMG_3167.jpg" alt="Living Sculpture Set" style="width:100%; flex:1; object-fit:contain; min-height:0;">
+            <div class="cap" style="margin:0; padding:3px 0 0;">
+                <span class="cap-t">Living Sculpture Set</span>
+                <span class="cap-d">200-year-old Georgian pine &middot; modular furniture</span>
+            </div>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; min-height:0;">
+            <img src="SKNYPL/IMG_3169.jpg" alt="Living Sculpture Set (Detail)" style="width:100%; flex:1; object-fit:contain; min-height:0;">
+            <div class="cap" style="margin:0; padding:3px 0 0;">
+                <span class="cap-t">Living Sculpture Set (Detail)</span>
+                <span class="cap-d">reclaimed pine &middot; cut and reassembled</span>
+            </div>
+        </div>
+    </div>
+    <div style="height:5mm;"></div>
+    <span class="pn">13</span>
+</div>
+
+<!-- 14: BACK COVER — real logo -->
 <div class="page back">
-    <div>
-        <div class="logo-shape logo-sm">
-            <div class="bg"></div>
-            <div class="text">
-                <span class="line1">Art<span class="plus">+</span></span>
-                <span class="line2">OBJECTS</span>
-            </div>
-        </div>
-        <div class="back-info">
-            Tbilisi Art Fair 2026 &middot; May 21&ndash;24<br>
-            ExpoGeorgia, Tbilisi, Georgia<br><br>
-            info@artobjects.gallery<br><br>
-            Dubinsky &middot; Lizi Budagashvili<br>
-            Daria Krotova &middot; SKNYPL
-        </div>
+    <img src="ЛОГОТИП/IMG_3159.jpg" alt="Art+OBJECTS">
+    <div class="back-info">
+        Tbilisi Art Fair 2026 &middot; May 21&ndash;24<br>
+        ExpoGeorgia, Tbilisi, Georgia<br><br>
+        info@artobjects.gallery<br><br>
+        Dubinsky &middot; Lizi Budagashvili<br>
+        Daria Krotova &middot; SKNYPL
     </div>
 </div>
 
