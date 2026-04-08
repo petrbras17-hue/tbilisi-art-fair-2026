@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art+OBJECTS — Tbilisi Art Fair 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #E8A8A5;
+            --pink-light: #E8B5B3;
+            --pink-pale: #F5E0DF;
+            --black: #1A1A1A;
+            --gray-dark: #4A4A4A;
+            --gray: #8A8A8A;
+            --gray-light: #C8C8C8;
+            --gray-bg: #F5F5F3;
+            --white: #FFFFFF;
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+            --mono: 'DM Mono', 'Courier New', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--sans);
+            color: var(--black);
+            background: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+        nav .nav-inner {
+            max-width: 1400px; margin: 0 auto; padding: 16px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        nav .logo-mark {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; color: var(--black);
+        }
+        nav .nav-logo-shape {
+            position: relative; width: 90px; height: 44px;
+        }
+        nav .nav-logo-shape .bg {
+            position: absolute; inset: 0; background: var(--pink);
+            clip-path: polygon(
+                0% 20%, 8% 20%, 8% 8%, 18% 8%, 18% 0%,
+                82% 0%, 82% 8%, 92% 8%, 92% 20%, 100% 20%,
+                100% 80%, 92% 80%, 92% 92%, 82% 92%, 82% 100%,
+                18% 100%, 18% 92%, 8% 92%, 8% 80%, 0% 80%
+            );
+        }
+        nav .nav-logo-shape .logo-text-inner {
+            position: relative; z-index: 1;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: flex-start;
+            height: 100%; padding-left: 10px;
+            font-family: var(--serif); color: var(--black); line-height: 1;
+        }
+        nav .nav-logo-shape .l1 { font-size: 16px; font-weight: 400; }
+        nav .nav-logo-shape .l1 .plus { font-size: 12px; vertical-align: super; }
+        nav .nav-logo-shape .l2 { font-size: 16px; font-weight: 500; letter-spacing: 0.02em; }
+        nav .nav-links { display: flex; gap: 32px; list-style: none; }
+        nav .nav-links a {
+            font-size: 12px; font-weight: 400; letter-spacing: 0.12em;
+            text-transform: uppercase; text-decoration: none;
+            color: var(--gray-dark); transition: color 0.2s;
+        }
+        nav .nav-links a:hover { color: var(--pink); }
+        .mobile-menu-btn {
+            display: none; background: none; border: none; font-size: 24px;
+            cursor: pointer; color: var(--black); padding: 4px 8px;
+        }
+
+        /* Logo shape (exact replica) */
+        .logo-shape {
+            position: relative; display: inline-block;
+        }
+        .logo-shape .bg {
+            position: absolute; inset: 0; background: var(--pink);
+            clip-path: polygon(
+                0% 20%, 8% 20%, 8% 8%, 18% 8%, 18% 0%,
+                82% 0%, 82% 8%, 92% 8%, 92% 20%, 100% 20%,
+                100% 80%, 92% 80%, 92% 92%, 82% 92%, 82% 100%,
+                18% 100%, 18% 92%, 8% 92%, 8% 80%, 0% 80%
+            );
+        }
+        .logo-shape .logo-text-inner {
+            position: relative; z-index: 1;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: flex-start;
+            height: 100%;
+            font-family: var(--serif); color: var(--black); line-height: 1;
+        }
+        .logo-shape .l1 { font-size: inherit; font-weight: 400; }
+        .logo-shape .l1 .plus { font-size: 0.73em; vertical-align: super; margin-left: -2px; }
+        .logo-shape .l2 { font-size: inherit; font-weight: 500; letter-spacing: 0.02em; }
+
+        /* Hero */
+        .hero {
+            height: 70vh; min-height: 500px;
+            display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center; padding: 40px;
+            position: relative; overflow: hidden;
+        }
+        .hero-content { position: relative; z-index: 1; display:flex; flex-direction:column; align-items:center; }
+        .hero .hero-logo {
+            width: 320px; height: 160px; font-size: 60px; padding-left: 36px;
+        }
+        .hero .subtitle {
+            font-family: var(--mono); font-size: 13px; font-weight: 300;
+            letter-spacing: 0.3em; text-transform: uppercase;
+            color: var(--gray); margin-top: 24px;
+        }
+        .hero .event-badge {
+            display: inline-block; margin-top: 40px; padding: 12px 32px;
+            border: 1px solid var(--gray-light);
+            font-family: var(--sans); font-size: 12px; font-weight: 400;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--gray-dark); text-decoration: none; transition: all 0.3s;
+        }
+        .hero .event-badge:hover { border-color: var(--pink); color: var(--pink); }
+        .hero .scroll-hint {
+            position: absolute; bottom: 40px; left: 50%;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            color: var(--gray); font-size: 10px; letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+        .hero .scroll-hint .line {
+            width: 1px; height: 40px;
+            background: linear-gradient(to bottom, var(--gray-light), transparent);
+        }
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* Sections */
+        section { padding: 60px 40px; }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        .section-label {
+            font-family: var(--mono); font-size: 11px; font-weight: 300;
+            letter-spacing: 0.3em; text-transform: uppercase;
+            color: var(--gray); margin-bottom: 16px;
+        }
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(28px, 3.5vw, 48px);
+            font-weight: 300; line-height: 1.15;
+            letter-spacing: -0.01em; margin-bottom: 28px;
+        }
+
+        /* About */
+        #about { background: var(--gray-bg); }
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 40px; align-items: start;
+        }
+        .about-text { font-size: 16px; line-height: 1.8; color: var(--gray-dark); }
+        .about-text p + p { margin-top: 20px; }
+        .about-stats {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 40px; padding-top: 20px;
+        }
+        .stat { border-top: 1px solid var(--gray-light); padding-top: 20px; }
+        .stat-number {
+            font-family: var(--serif); font-size: 48px;
+            font-weight: 300; color: var(--pink); line-height: 1;
+        }
+        .stat-label {
+            font-size: 12px; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--gray); margin-top: 8px;
+        }
+
+        /* Artist Sections */
+        .artist-section { padding: 50px 40px; border-top: 1px solid rgba(0,0,0,0.06); }
+        .artist-section:nth-child(even) { background: var(--gray-bg); }
+        .artist-header {
+            max-width: 1200px; margin: 0 auto 30px;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 40px; align-items: end;
+        }
+        .artist-name {
+            font-family: var(--serif);
+            font-size: clamp(32px, 4vw, 56px);
+            font-weight: 300; line-height: 1.05; letter-spacing: -0.02em;
+        }
+        .artist-name .underscore { color: var(--pink); }
+        .artist-bio { font-size: 14px; line-height: 1.8; color: var(--gray-dark); }
+        .artist-meta {
+            display: flex; gap: 24px; margin-top: 16px;
+            font-family: var(--mono); font-size: 11px;
+            color: var(--gray); letter-spacing: 0.05em;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid { max-width: 1200px; margin: 0 auto; display: grid; gap: 24px; }
+        .gallery-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+        .gallery-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+        .gallery-grid.cols-1 { grid-template-columns: 1fr; max-width: 900px; }
+        .artwork-card {
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .artwork-card:hover { transform: translateY(-4px); }
+        .artwork-card img {
+            width: 100%; height: auto; display: block;
+            background: var(--gray-bg); border: 1px solid rgba(0,0,0,0.04);
+        }
+        .artwork-info { padding: 16px 0; }
+        .artwork-title {
+            font-family: var(--serif); font-size: 18px;
+            font-weight: 400; font-style: italic; margin-bottom: 6px;
+        }
+        .artwork-details {
+            font-family: var(--mono); font-size: 11px;
+            color: var(--gray); letter-spacing: 0.03em; line-height: 1.6;
+        }
+        .artwork-card.featured { grid-column: 1 / -1; }
+        .artwork-card.featured img {
+            max-height: 70vh; object-fit: contain; margin: 0 auto;
+        }
+
+        /* Experience Section */
+        #experience { background: var(--black); color: var(--white); text-align: center; }
+        #experience .section-label { color: var(--gray); }
+        #experience .section-title { color: var(--white); }
+        .experience-desc {
+            max-width: 640px; margin: 0 auto 60px;
+            font-size: 16px; line-height: 1.8; color: var(--gray);
+        }
+        .feature-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 40px; max-width: 1000px; margin: 0 auto;
+        }
+        .feature-card {
+            padding: 40px 32px; border: 1px solid rgba(255,255,255,0.1);
+            text-align: left; transition: border-color 0.3s;
+        }
+        .feature-card:hover { border-color: var(--pink); }
+        .feature-icon { font-size: 32px; margin-bottom: 20px; }
+        .feature-card h3 {
+            font-family: var(--serif); font-size: 22px;
+            font-weight: 400; margin-bottom: 12px;
+        }
+        .feature-card p { font-size: 13px; line-height: 1.7; color: var(--gray); }
+
+        /* Visit */
+        #visit { text-align: center; }
+        .visit-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 60px; max-width: 900px; margin: 0 auto;
+        }
+        .visit-item { padding-top: 24px; border-top: 1px solid var(--gray-light); }
+        .visit-item h3 {
+            font-family: var(--serif); font-size: 28px;
+            font-weight: 400; margin-bottom: 8px;
+        }
+        .visit-item p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+        /* Contact */
+        #contact { background: var(--gray-bg); text-align: center; }
+        .contact-cta {
+            font-family: var(--serif);
+            font-size: clamp(24px, 3vw, 40px);
+            font-weight: 300; line-height: 1.4;
+            max-width: 700px; margin: 0 auto 40px;
+        }
+        .contact-email {
+            display: inline-block; font-family: var(--mono);
+            font-size: 14px; letter-spacing: 0.1em;
+            padding: 16px 48px; border: 1px solid var(--black);
+            color: var(--black); text-decoration: none; transition: all 0.3s;
+        }
+        .contact-email:hover { background: var(--black); color: var(--white); }
+
+        /* Footer */
+        footer {
+            padding: 40px; text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        footer p {
+            font-family: var(--mono); font-size: 11px;
+            color: var(--gray); letter-spacing: 0.1em;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none; position: fixed; inset: 0; z-index: 1000;
+            background: rgba(0,0,0,0.92); backdrop-filter: blur(20px);
+            justify-content: center; align-items: center;
+            cursor: zoom-out; padding: 40px;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 85vh; object-fit: contain; }
+        .lightbox-info {
+            position: absolute; bottom: 40px; left: 50%;
+            transform: translateX(-50%); text-align: center; color: var(--white);
+        }
+        .lightbox-info .artwork-title { color: var(--white); font-size: 22px; }
+        .lightbox-info .artwork-details { color: var(--gray); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            section { padding: 40px 20px; }
+            .artist-section { padding: 40px 20px; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .artist-header { grid-template-columns: 1fr; gap: 24px; }
+            .gallery-grid.cols-2, .gallery-grid.cols-3 { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .visit-grid { grid-template-columns: 1fr; gap: 32px; }
+            .mobile-menu-btn { display: block; }
+            nav .nav-links {
+                display: none; position: absolute; top: 100%; left: 0; right: 0;
+                flex-direction: column; gap: 0; background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(20px); padding: 16px 24px;
+                border-bottom: 1px solid rgba(0,0,0,0.06);
+            }
+            nav .nav-links.open { display: flex; }
+            nav .nav-links li { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.04); }
+            nav .nav-inner { padding: 14px 24px; }
+        }
+        @media (max-width: 600px) {
+            .hero .hero-logo { width: 240px; height: 120px; font-size: 44px; padding-left: 26px; }
+            .about-stats { grid-template-columns: 1fr; }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="logo-mark" aria-label="Art+OBJECTS home">
+            <div class="nav-logo-shape">
+                <div class="bg"></div>
+                <div class="logo-text-inner">
+                    <span class="l1">Art<span class="plus">+</span></span>
+                    <span class="l2">OBJECTS</span>
+                </div>
+            </div>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Open menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#dubinsky">Dubinsky</a></li>
+            <li><a href="#lizi">Lizi</a></li>
+            <li><a href="#krotova">Krotova</a></li>
+            <li><a href="#sknypl">SKNYPL</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#visit">Visit</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="logo-shape hero-logo">
+            <div class="bg"></div>
+            <div class="logo-text-inner">
+                <span class="l1">Art<span class="plus">+</span></span>
+                <span class="l2">OBJECTS</span>
+            </div>
+        </div>
+        <div class="subtitle">Tbilisi Art Fair &mdash; May 21&ndash;24, 2026</div>
+        <a href="#about" class="event-badge">Discover the Collection</a>
+    </div>
+    <div class="scroll-hint">
+        <span>Scroll</span>
+        <div class="line"></div>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about">
+    <div class="section-inner">
+        <div class="section-label">001 &mdash; About</div>
+        <h2 class="section-title fade-in">Four Voices.<br>One Conversation.</h2>
+        <div class="about-grid">
+            <div class="about-text fade-in">
+                <p>Art+OBJECTS presents a curated selection of contemporary art and design at Tbilisi Art Fair 2026. Uniting painting, sculpture, ceramics, and functional art, the booth explores the boundary where fine art meets the tangible world.</p>
+                <p>From Dubinsky's narrative oil stick canvases capturing post-Soviet nostalgia and Tbilisi's everyday poetry, to Lizi Budagashvili's ethereal dreamscapes woven from childhood memory &mdash; from Daria Krotova's haunting ceramic faces to SKNYPL's sculptural furniture hewn from 200-year-old Georgian pine &mdash; each artist transforms the familiar into the extraordinary.</p>
+                <p>This is art you can live with. Objects you can live in.</p>
+            </div>
+            <div class="about-stats fade-in">
+                <div class="stat">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Artists</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Works</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Mediums</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Vision</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DUBINSKY -->
+<section class="artist-section" id="dubinsky">
+    <div class="artist-header">
+        <div>
+            <div class="section-label">002 &mdash; Artist</div>
+            <h2 class="artist-name fade-in">Dubinsky<span class="underscore">_</span></h2>
+        </div>
+        <div class="fade-in">
+            <p class="artist-bio">Tbilisi-based artist working in oil sticks and oil on canvas. Dubinsky's work oscillates between childlike directness and sophisticated narrative &mdash; capturing the poetry of everyday life, domestic interiors, and collective memory with bold line and selective color.</p>
+            <div class="artist-meta">
+                <span>Oil sticks &amp; Oil on canvas</span>
+                <span>Tbilisi</span>
+                <span>2022&ndash;2025</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-grid cols-1">
+        <div class="artwork-card featured fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../DUBINSKY/IMG_3146.jpg" alt="In the Bathroom" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">In the Bathroom</div>
+                <div class="artwork-details">Oil on canvas &middot; 50x50 cm (each) &middot; 2025 &middot; Tbilisi</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-grid cols-2" style="margin-top:20px">
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../DUBINSKY/IMG_3144.jpg" alt="The Lake" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">The Lake</div>
+                <div class="artwork-details">Oil on canvas &middot; 80x60 cm &middot; 2025 &middot; Tbilisi</div>
+            </div>
+        </div>
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../DUBINSKY/IMG_3145.jpg" alt="Midnight Bar" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Midnight Bar</div>
+                <div class="artwork-details">Oil on canvas &middot; 80x60 cm &middot; 2025 &middot; Tbilisi</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-grid cols-2" style="margin-top:20px">
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../DUBINSKY/IMG_3147.jpg" alt="Naked With a Hat" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Naked With a Hat</div>
+                <div class="artwork-details">Oil on canvas &middot; 60x45 cm &middot; 2025 &middot; Tbilisi</div>
+            </div>
+        </div>
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../DUBINSKY/IMG_3148.jpg" alt="Birthday Evening" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Birthday Evening</div>
+                <div class="artwork-details">Oil on canvas &middot; 40x30 cm &middot; 2025 &middot; Tbilisi</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-grid cols-2" style="margin-top:20px">
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../DUBINSKY/IMG_3149.jpg" alt="The Blue Vase" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">The Blue Vase</div>
+                <div class="artwork-details">Oil sticks on canvas &middot; 100x100 cm &middot; 2023 &middot; Tbilisi</div>
+            </div>
+        </div>
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../DUBINSKY/IMG_3150.jpg" alt="After Dinner" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">After Dinner</div>
+                <div class="artwork-details">Oil sticks on canvas &middot; 170x120 cm &middot; 2023 &middot; Tbilisi</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-grid cols-2" style="margin-top:20px">
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../DUBINSKY/IMG_3151.jpg" alt="Dracaena" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Dracaena</div>
+                <div class="artwork-details">Oil sticks and acrylic on canvas &middot; 190x155 cm &middot; 2022 &middot; Tbilisi</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LIZI BUDAGASHVILI -->
+<section class="artist-section" id="lizi">
+    <div class="artist-header">
+        <div>
+            <div class="section-label">003 &mdash; Artist</div>
+            <h2 class="artist-name fade-in">Lizi<br>Budagashvili</h2>
+        </div>
+        <div class="fade-in">
+            <p class="artist-bio">Born in Tbilisi (b. 2000), currently based in New York. MFA from the New York Academy of Art, BFA from Ringling College. Two-time recipient of the Elizabeth Greenshields Foundation Grant. Her paintings capture the longing for simpler times, delving into ephemeral, mirage-like childhood recollections through transparent veils and dreamlike atmospheres.</p>
+            <div class="artist-meta">
+                <span>Oil on canvas &amp; Mixed media</span>
+                <span>Tbilisi / New York</span>
+                <span>2022&ndash;2025</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-grid cols-2">
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../LIZI/IMG_3152.jpg" alt="Find Them (2)" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Find Them (2)</div>
+                <div class="artwork-details">Oil on canvas &middot; 110x140 cm &middot; 2022 &middot; Tbilisi</div>
+            </div>
+        </div>
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../LIZI/IMG_3154.jpg" alt="Firefly (3)" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Firefly (3)</div>
+                <div class="artwork-details">Oil on canvas &middot; 100x130 cm &middot; 2023 &middot; Tbilisi</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-grid cols-3" style="margin-top:20px">
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../LIZI/IMG_3153.jpg" alt="Flowers from the Meadow" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Flowers from the Meadow</div>
+                <div class="artwork-details">Oil and graphite on paper &middot; 50x70 cm &middot; 2023</div>
+            </div>
+        </div>
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../LIZI/IMG_3155.jpg" alt="Offerings to Memories" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Offerings to Memories</div>
+                <div class="artwork-details">Screenprint, collage and stitching on paper &middot; 56x58 cm &middot; 2022</div>
+            </div>
+        </div>
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../LIZI/IMG_3156.jpg" alt="Balcony. May" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Balcony. May</div>
+                <div class="artwork-details">Oil on canvas &middot; 15x25 cm &middot; 2025 &middot; New York</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DARIA KROTOVA -->
+<section class="artist-section" id="krotova">
+    <div class="artist-header">
+        <div>
+            <div class="section-label">004 &mdash; Artist</div>
+            <h2 class="artist-name fade-in">Daria<br>Krotova</h2>
+        </div>
+        <div class="fade-in">
+            <p class="artist-bio">Sculptor and multimedia artist working across ceramics and works on paper. Krotova's ceramic faces &mdash; expressive, vulnerable, haunting &mdash; hover between portraiture and emotional archaeology. Her abstract paper works layer graphic marks with bursts of pure color, creating constellations of contained energy.</p>
+            <div class="artist-meta">
+                <span>Ceramics &amp; Works on paper</span>
+                <span>Tbilisi</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-grid cols-2">
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../KROTOVA/IMG_3161.jpg" alt="Ceramic Faces" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Ceramic Faces</div>
+                <div class="artwork-details">Ceramic sculpture &middot; Wall installation &middot; Tbilisi</div>
+            </div>
+        </div>
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../KROTOVA/IMG_3162.jpg" alt="Faces &mdash; Multitude" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Faces &mdash; Multitude</div>
+                <div class="artwork-details">Ceramic sculpture &middot; Large-scale installation &middot; Tbilisi</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-grid cols-1" style="margin-top:20px">
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../KROTOVA/IMG_3163.jpg" alt="Constellations (Series)" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Constellations (Series)</div>
+                <div class="artwork-details">Mixed media on paper &middot; Series of 4 works &middot; Tbilisi</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKNYPL -->
+<section class="artist-section" id="sknypl">
+    <div class="artist-header">
+        <div>
+            <div class="section-label">005 &mdash; Artist / Design</div>
+            <h2 class="artist-name fade-in">SKNYPL</h2>
+        </div>
+        <div class="fade-in">
+            <p class="artist-bio">SKNYPL repurposes 200-year-old pine from a Georgian railway sawmill, cutting and reassembling the wood into modular sculptural furniture. Each piece carries the weight of industrial history &mdash; transformed into living objects that blur the line between sculpture and function, heritage and future.</p>
+            <div class="artist-meta">
+                <span>Reclaimed Georgian pine</span>
+                <span>Modular sculpture/furniture</span>
+                <span>Tbilisi</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-grid cols-2">
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../SKNYPL/IMG_3167.jpg" alt="Living Sculpture Set" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Living Sculpture Set</div>
+                <div class="artwork-details">200-year-old pine from Georgian railway &middot; Modular furniture</div>
+            </div>
+        </div>
+        <div class="artwork-card fade-in" tabindex="0" role="button" onclick="openLightbox(this)" onkeydown="if(event.key==='Enter')openLightbox(this)">
+            <img src="../SKNYPL/IMG_3169.jpg" alt="Living Sculpture Set (Detail)" loading="lazy">
+            <div class="artwork-info">
+                <div class="artwork-title">Living Sculpture Set (Detail)</div>
+                <div class="artwork-details">Reclaimed pine &middot; Cut and reassembled &middot; Tbilisi</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE (QR / AR) -->
+<section id="experience">
+    <div class="section-inner">
+        <div class="section-label">006 &mdash; Innovation</div>
+        <h2 class="section-title fade-in">Art Beyond<br>the Frame</h2>
+        <p class="experience-desc fade-in">Every artwork at our booth comes alive through technology. Scan the QR code beneath each piece to unlock an AI-generated video that animates the work &mdash; giving it motion, breath, and an extended reality.</p>
+        <div class="feature-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">&#9724;</div>
+                <h3>QR to Video</h3>
+                <p>Each artwork has a unique QR code linking to an AI-generated animation that brings the piece to life on your phone.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">&#9670;</div>
+                <h3>Extended Reality</h3>
+                <p>See Dubinsky's figures move, watch Lizi's dreamscapes ripple, feel Krotova's faces breathe &mdash; art in motion.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">&#9679;</div>
+                <h3>Collect and Share</h3>
+                <p>Save video previews of your favorite works. Share them instantly. Build your collection before you buy.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit">
+    <div class="section-inner">
+        <div class="section-label">007 &mdash; Visit</div>
+        <h2 class="section-title fade-in">Find Us at<br>Tbilisi Art Fair</h2>
+        <div class="visit-grid fade-in">
+            <div class="visit-item">
+                <h3>May 24</h3>
+                <p>Opening day<br>Tbilisi Art Fair 2026<br>Tbilisi, Georgia</p>
+            </div>
+            <div class="visit-item">
+                <h3>Art+OBJECTS</h3>
+                <p>Booth location<br>to be announced<br><em>Check back for updates</em></p>
+            </div>
+            <div class="visit-item">
+                <h3>By Appointment</h3>
+                <p>Private viewings<br>available before<br>and during the fair</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+    <div class="section-inner">
+        <div class="section-label">008 &mdash; Contact</div>
+        <p class="contact-cta fade-in">Interested in a work?<br>Let's start a conversation.</p>
+        <a href="mailto:info@artobjects.gallery" class="contact-email fade-in">info@artobjects.gallery</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>2026 Art+OBJECTS &middot; Tbilisi Art Fair &middot; All rights reserved</p>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Artwork view" onclick="closeLightbox()">
+    <button style="position:absolute;top:20px;right:24px;background:none;border:none;color:white;font-size:32px;cursor:pointer;z-index:10" aria-label="Close" onclick="closeLightbox()">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-info">
+        <div class="artwork-title" id="lightbox-title"></div>
+        <div class="artwork-details" id="lightbox-details"></div>
+    </div>
+</div>
+
+<script>
+    // Intersection Observer for fade-in animations
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(function(el) {
+        observer.observe(el);
+    });
+
+    // Lightbox
+    function openLightbox(card) {
+        var img = card.querySelector('img');
+        var title = card.querySelector('.artwork-title');
+        var details = card.querySelector('.artwork-details');
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox-title').textContent = title.textContent;
+        document.getElementById('lightbox-details').textContent = details.textContent;
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        var nav = document.querySelector('nav');
+        if (window.scrollY > 100) {
+            nav.style.boxShadow = '0 1px 20px rgba(0,0,0,0.06)';
+        } else {
+            nav.style.boxShadow = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
