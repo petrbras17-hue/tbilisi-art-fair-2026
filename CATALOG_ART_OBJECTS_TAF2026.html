@@ -46,13 +46,14 @@
         .full img {
             width: 100%; flex: 1; object-fit: contain;
             padding: 2mm 0 0 0;
+            clip-path: inset(3% 4% 3% 4%);
         }
         .full .cap { margin: 0 4mm 3mm; }
 
         /* Stacked: two images vertically, each spanning full width */
         .stacked { padding: 2mm 0; gap: 2mm; }
         .stk-item { flex: 1; display: flex; flex-direction: column; min-height: 0; }
-        .stk-item img { width: 100%; flex: 1; object-fit: contain; min-height: 0; }
+        .stk-item img { width: 100%; flex: 1; object-fit: contain; min-height: 0; clip-path: inset(3% 4% 3% 4%); }
         .stk-item .cap { border-top: 0.5px solid var(--gray-light); padding: 3px 4mm 0; }
 
         /* Divider header strip */
@@ -67,6 +68,12 @@
             font-family: var(--mono); font-size: 9px;
             letter-spacing: 0.2em; text-transform: uppercase;
             color: var(--gray); margin-top: 6px;
+        }
+        .hdr-bio {
+            font-family: var(--sans); font-size: 9px; line-height: 1.7;
+            color: var(--gray); margin-top: 8px;
+            max-width: 440px; margin-left: auto; margin-right: auto;
+            text-align: center;
         }
 
         /* Bio strip */
@@ -85,7 +92,10 @@
             justify-content: center; align-items: center; text-align: center;
             padding: 30mm;
         }
-        .cover img { max-width: 70%; max-height: 40%; object-fit: contain; }
+        .cover img {
+            max-width: 65%; max-height: 38%; object-fit: cover;
+            clip-path: inset(5% 5% 14% 5%);
+        }
         .cover .cov-sub {
             font-family: var(--mono); font-size: 11px;
             letter-spacing: 0.3em; text-transform: uppercase;
@@ -127,6 +137,7 @@
     <div class="hdr">
         <h2>Dubinsky<span style="color:var(--pink)">_</span></h2>
         <div class="sub">Oil sticks and oil on canvas &middot; Tbilisi &middot; 2022&ndash;2025</div>
+        <p class="hdr-bio">Tbilisi-based artist working in oil sticks and oil on canvas. Dubinsky's work oscillates between childlike directness and sophisticated narrative &mdash; capturing the poetry of everyday life, domestic interiors, and collective memory with bold line and selective color.</p>
     </div>
     <img src="DUBINSKY/IMG_3146.jpg" alt="In the Bathroom">
     <div class="cap" style="margin:0 4mm 3mm;">
@@ -208,6 +219,7 @@
     <div class="hdr">
         <h2>Lizi Budagashvili</h2>
         <div class="sub">Tbilisi / New York &middot; Oil on canvas and mixed media &middot; 2022&ndash;2025</div>
+        <p class="hdr-bio">Born in Tbilisi (b. 2000), currently based in New York. MFA from the New York Academy of Art, BFA from Ringling College. Two-time Elizabeth Greenshields Foundation Grant recipient. Her paintings capture the longing for simpler times, delving into ephemeral, mirage-like childhood recollections through transparent veils and dreamlike atmospheres.</p>
     </div>
     <img src="LIZI/IMG_3152.jpg" alt="Find Them (2)">
     <div class="cap" style="margin:0 4mm 3mm;">
@@ -279,6 +291,7 @@
     <div class="hdr">
         <h2>Daria Krotova</h2>
         <div class="sub">Ceramics and works on paper &middot; Tbilisi</div>
+        <p class="hdr-bio">Sculptor and multimedia artist working across ceramics and works on paper. Krotova's ceramic faces &mdash; expressive, vulnerable, haunting &mdash; hover between portraiture and emotional archaeology. Her abstract paper works layer graphic marks with bursts of pure color, creating constellations of contained energy.</p>
     </div>
     <img src="KROTOVA/IMG_3161.jpg" alt="Ceramic Faces">
     <div class="cap" style="margin:0 4mm 3mm;">
@@ -307,30 +320,37 @@
     <span class="pn">12</span>
 </div>
 
-<!-- 13: SKNYPL divider + works (VERTICAL) -->
+<!-- 13: SKNYPL divider + Living Sculpture Set -->
 <div class="page full">
     <div class="hdr">
         <h2>SKNYPL</h2>
         <div class="sub">Modular sculpture / furniture &middot; 200-year-old Georgian pine &middot; Tbilisi</div>
+        <p class="hdr-bio">SKNYPL repurposes 200-year-old pine from a Georgian railway sawmill, cutting and reassembling the wood into modular sculptural furniture. Each piece carries the weight of industrial history &mdash; transformed into living objects that blur the line between sculpture and function, heritage and future.</p>
     </div>
-    <div style="flex:1; display:flex; flex-direction:column; gap:2mm; padding:2mm 0 0;">
-        <div style="flex:1; display:flex; flex-direction:column; min-height:0;">
-            <img src="SKNYPL/IMG_3167.jpg" alt="Living Sculpture Set" style="width:100%; flex:1; object-fit:contain; min-height:0;">
-            <div class="cap" style="margin:0; padding:3px 0 0;">
-                <span class="cap-t">Living Sculpture Set</span>
-                <span class="cap-d">200-year-old Georgian pine &middot; modular furniture</span>
-            </div>
-        </div>
-        <div style="flex:1; display:flex; flex-direction:column; min-height:0;">
-            <img src="SKNYPL/IMG_3169.jpg" alt="Living Sculpture Set (Detail)" style="width:100%; flex:1; object-fit:contain; min-height:0;">
-            <div class="cap" style="margin:0; padding:3px 0 0;">
-                <span class="cap-t">Living Sculpture Set (Detail)</span>
-                <span class="cap-d">reclaimed pine &middot; cut and reassembled</span>
-            </div>
-        </div>
+    <img src="SKNYPL/IMG_3167.jpg" alt="Living Sculpture Set">
+    <div class="cap" style="margin:0 4mm 3mm;">
+        <span class="cap-t">Living Sculpture Set</span>
+        <span class="cap-d">200-year-old Georgian pine &middot; modular furniture</span>
     </div>
-    <div style="height:5mm;"></div>
     <span class="pn">13</span>
+</div>
+
+<!-- 14: SKNYPL Exhibition View + info + TAF logo -->
+<div class="page full">
+    <img src="SKNYPL/IMG_3174.jpg" alt="Exhibition View">
+    <div class="cap" style="margin:0 4mm 3mm;">
+        <span class="cap-t">Exhibition View</span>
+        <span class="cap-d">reclaimed pine, metal, glass &middot; modular installation</span>
+    </div>
+    <div style="flex:0; text-align:center; padding:6mm 8mm 4mm; border-top:0.5px solid var(--gray-light); margin:0 4mm;">
+        <div style="font-family:var(--mono); font-size:8px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gray); margin-bottom:4px;">Presented at</div>
+        <img src="ЛОГОТИП/IMG_3160.jpg" alt="Tbilisi Art Fair" style="height:22mm; object-fit:contain; clip-path:inset(8% 8% 8% 8%);">
+        <div style="font-family:var(--mono); font-size:7.5px; color:var(--gray); letter-spacing:0.08em; line-height:2; margin-top:6px;">
+            May 21&ndash;24, 2026 &middot; ExpoGeorgia, Tbilisi<br>
+            info@artobjects.gallery
+        </div>
+    </div>
+    <span class="pn">14</span>
 </div>
 
 
